@@ -28,24 +28,21 @@ endmodule
 
 
 //==========================================================================
-//                   DISPLAY CONTROLLER (no buffering)
+//                           DISPLAY CONTROLLER
 //
 // given inputs of bitline in and 6-bit address for bit to consider, choose
 //                          which bits to output 
-//
-// assuming that addr is a 6-bit address between 1 and 64, addr[5:3] will
-//              describe col and addr[2:0] will describe row
-//
 //==========================================================================
 
-module dispcontrol (input logic [5:0] addr, input logic BitIn,
-					output logic [5:0] row, output logic [5:0] col)
+module dispcontrol (input logic [5:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
+					output logic [7:0] row, output logic [7:0] col)
+
 	always_latch begin
+		// if clock phase 1 and LED should be on
+		if (ph1) begin
+			row <= (8'b00000001 << addr[5:3]);
+			col <= ~BitIn;
+		end	
+	end	
 	
-	end			
-endmodule
-					output logic [5:0] row, output logic [5:0] col);
-
-
-					
 endmodule
