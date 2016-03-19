@@ -25,21 +25,21 @@ endmodule
 //==========================================================================
 
 module controller (input logic ph1, input logic ph2, input logic reset,
-				   output logic RWSelect, output logic [5:0] addr);
+				   output logic RWSelect, output logic [2:0] addr);
 
-	logic [5:0] addr;
+	logic [2:0] addr;
 	logic [5:0] count;
 	logic RWSelect;
 
 	always @posedge(reset) begin
-		addr = 6b'000000;
+		addr = 3b'000;
 		count = 6b'000000;
 		RWSelect = 1b'1;
 	end
 
 	always_latch begin
 
-		if (addr == 7b'11111111) begin
+		if (addr == 3b'111) begin
 			//increment counter every time the entire matrix is read or written through
 			count <= count + 1b'1;
 			
@@ -92,17 +92,17 @@ endmodule
 //==========================================================================
 //                           DISPLAY CONTROLLER
 //
-// given inputs of bitline in and 6-bit address for bit to consider, choose
+// given inputs of bitline in and 3-bit address for bit to consider, choose
 //                          which bits to output 
 //==========================================================================
 
-module dispcontrol (input logic [5:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
+module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
 					output logic [7:0] row, output logic [7:0] col)
 
 	always_latch begin
 		// if clock phase 1 and LED should be on
 		if (ph1) begin
-			row <= (8'b00000001 << addr[5:3]);
+			row <= (8'b00000001 << addr);
 			col <= ~BitIn;
 		end	
 	end	
