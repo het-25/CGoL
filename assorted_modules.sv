@@ -15,6 +15,49 @@ module decoder_top (input logic [7:0] row_in, row_a, row_b,
 endmodule
 
 
+//==========================================================================
+//                              CONTROLLER
+// RWSelect 1 for write, 0 for read
+// every clock cycle, increment addr
+// every 64 clock cycles is one frame
+// every frame, increment count
+// every 64 frames, switch from read to write for one frame
+//==========================================================================
+
+module controller (input logic ph1, input logic ph2, input logic reset,
+				   output logic RWSelect, output logic [5:0] addr);
+
+	logic [5:0] addr;
+	logic [5:0] count;
+	logic RWSelect;
+
+	always @posedge(reset) begin
+		addr = 6b'000000;
+		count = 6b'000000;
+		RWSelect = 1b'1;
+	end
+
+	always_latch begin
+
+		if (addr == 7b'11111111) begin
+			//increment counter every time the entire matrix is read or written through
+			count <= count + 1b'1;
+			
+			//if we have gone through 64 life cycles, do a write
+			if (count == 6b'000001) RWSelect <= 1b'0;
+			
+			//once the write is over, do a read
+			if (count == 6b'000000) RWSelect <= 1b'1;
+		end
+		
+		if (ph1) begin
+			//increment address value
+			addr = addr + 1b'1;
+		end
+		
+	end
+end
+
 
 
 //==========================================================================
@@ -29,7 +72,7 @@ module decoder (input  logic center, input logic [7:0] sides,
 	
 		// sum the bits coming in
 		logic [2:0] sum = sides[0] + sides[1] + sides[2] + sides[3] + sides[4] + sides[5] + sides[6] + sides[7];
-		
+
 		//consider center bits and bits of sum
 		casex ({center, sum})
 			4'bx011:
