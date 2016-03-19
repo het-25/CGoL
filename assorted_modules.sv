@@ -1,4 +1,23 @@
 //==========================================================================
+//                         TOP-LEVEL DECODER MODULE
+// computes the next state of an entire row using 8 decoder modules
+//==========================================================================
+module decoder_top (input logic [7:0] row_in, row_a, row_b,
+					output logic [7:0] row_out)
+		decoder d0(row_in[0], { row_a[1:0],row_a[7], row_b[1:0],row_b[7], row_in[1], row_in[7] }, row_out[0]);
+		decoder d1(row_in[1], { row_a[2:0],row_b[2:0], row_in[0], row_in[2] }, row_out[1]);
+		decoder d2(row_in[2], { row_a[3:1],row_b[3:1], row_in[1], row_in[3] }, row_out[2]);
+		decoder d3(row_in[3], { row_a[4:2],row_b[4:2], row_in[2], row_in[4] }, row_out[3]);
+		decoder d4(row_in[4], { row_a[5:3],row_b[5:3], row_in[3], row_in[5] }, row_out[4]);
+		decoder d5(row_in[5], { row_a[6:4],row_b[6:4], row_in[4], row_in[6] }, row_out[5]);
+		decoder d6(row_in[6], { row_a[7:5],row_b[7:5], row_in[5], row_in[7] }, row_out[6]);
+		decoder d7(row_in[7], { row_a[7:6],row_a[0], row_b[7:6],row_b[0], row_in[6], row_in[0] }, row_out[7]);
+endmodule
+
+
+
+
+//==========================================================================
 //                            DECODER MODULE
 // returns true if the center cell, given by boolean input 'center', should
 // be lit on the next generation (as determined by the 8-bit input 'sides')
