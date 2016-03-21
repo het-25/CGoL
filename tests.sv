@@ -37,33 +37,31 @@ module testbench_decoder();
 endmodule
 
 //not really actually a testbench; will just display stuff on LED matrix
-module testbench_led(input logic clk; output logic[7:0] row; output logic[7:0] col);
+module LEDTest(input logic clk, input logic reset, output logic[7:0] row, output logic[7:0] col);
 
-	logic [2:0] linenum;
+	logic [2:0] addr;
 	logic [7:0] testvectors[7:0];
+	logic [7:0] BitIn;
+	
+	assign testvectors[0] = 8'b11100000;
+	assign testvectors[1] =	8'b10001010;
+	assign testvectors[2] = 8'b11101010;
+	assign testvectors[3] =	8'b10001110;
+	assign testvectors[4] =	8'b00000000;
+	assign testvectors[5] =	8'b11101011;
+	assign testvectors[6] =	8'b10001100;
+	assign testvectors[7] = 8'b11101011;
 
 	//10-bit testvector format: {center, sides[7:0]}_nexton
 	dispcontrol dut(addr, BitIn, ph1, ph2, row, col);
 	
-	always begin
-		ph1 = 1'b1; ph2 = 1'b0; #5; ph1 = 1'b0; ph2 = 1'b1; #5;
-		linenum = 0;
+	assign ph1 = clk;
+	assign ph2 = ~clk;
+	
+	always_ff @(posedge clk) begin
+		BitIn <= testvectors[addr];
+		addr <= addr + 1'b1;
 	end
 	
-	initial begin
-		$readmemb("led.tv", testvectors)
-	end
-	
-	always @(posedge clk) begin
-		BitIn <= testvectors[linenum];
-		ph1 <= 1b'1;
-		ph2 <= 1b'0;
-		linenum <= linenum + 1'b1;
-	end
-	
-	always @(negedge clk) begin
-		ph1 <= 1b'0;
-		ph2 <= 1b'1;
-	end
 		
 endmodule
