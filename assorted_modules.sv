@@ -3,7 +3,7 @@
 // computes the next state of an entire row using 8 decoder modules
 //==========================================================================
 module decoder_top (input logic [7:0] row_in, row_a, row_b,
-					output logic [7:0] row_out)
+					output logic [7:0] row_out);
 		decoder d0(row_in[0], { row_a[1:0],row_a[7], row_b[1:0],row_b[7], row_in[1], row_in[7] }, row_out[0]);
 		decoder d1(row_in[1], { row_a[2:0],row_b[2:0], row_in[0], row_in[2] }, row_out[1]);
 		decoder d2(row_in[2], { row_a[3:1],row_b[3:1], row_in[1], row_in[3] }, row_out[2]);
@@ -27,36 +27,34 @@ endmodule
 module controller (input logic ph1, input logic ph2, input logic reset,
 				   output logic RWSelect, output logic [2:0] addr);
 
-	logic [2:0] addr;
 	logic [5:0] count;
-	logic RWSelect;
 
-	always @posedge(reset) begin
-		addr = 3b'000;
-		count = 6b'000000;
-		RWSelect = 1b'1;
+	always_latch begin
+		if (reset) begin
+		addr = 3'b000;
+		count = 6'b000000;
+		RWSelect = 1'b1;
+		end
 	end
 
 	always_latch begin
 
-		if (addr == 3b'111) begin
+		if (addr == 3'b111) begin
 			//increment counter every time the entire matrix is read or written through
-			count <= count + 1b'1;
+			count <= count + 1'b1;
 			
 			//if we have gone through 64 life cycles, do a write
-			if (count == 6b'000001) RWSelect <= 1b'0;
+			if (~(&count[5:1])) RWSelect <= count[0];
 			
-			//once the write is over, do a read
-			if (count == 6b'000000) RWSelect <= 1b'1;
-		end
+			end
 		
 		if (ph1) begin
 			//increment address value
-			addr = addr + 1b'1;
+			addr = addr + 1'b1;
 		end
 		
 	end
-end
+endmodule
 
 
 
@@ -97,7 +95,7 @@ endmodule
 //==========================================================================
 
 module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
-					output logic [7:0] row, output logic [7:0] col)
+					output logic [7:0] row, output logic [7:0] col);
 
 	always_latch begin
 		// if clock phase 1 and LED should be on
@@ -106,5 +104,4 @@ module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic
 			col <= ~BitIn;
 		end	
 	end	
-	
 endmodule

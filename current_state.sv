@@ -5,7 +5,7 @@
 // 
 //==========================================================================
 
-module regfile #(parameter WIDTH = 8, REGBITS = 3)
+module current_state #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2, 
                  input  logic               regwrite, 
                  input  logic [REGBITS-1:0] ra, wa, 
