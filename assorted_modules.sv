@@ -65,9 +65,10 @@ endmodule
 module decoder (input  logic center, input logic [7:0] sides,
 				output logic nexton);
 	always_comb begin
-	
+		
 		// sum the bits coming in
-		logic [2:0] sum = sides[0] + sides[1] + sides[2] + sides[3] + sides[4] + sides[5] + sides[6] + sides[7];
+		logic [2:0] sum;
+		sum = sides[0] + sides[1] + sides[2] + sides[3] + sides[4] + sides[5] + sides[6] + sides[7];
 
 		//consider center bits and bits of sum
 		casex ({center, sum})
