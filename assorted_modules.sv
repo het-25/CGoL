@@ -30,16 +30,14 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 	logic [5:0] count;
 
 	always_latch begin
+	
 		if (reset) begin
-		addr = 3'b000;
-		count = 6'b000000;
-		RWSelect = 1'b1;
+			addr = 3'b000;
+			count = 6'b000000;
+			RWSelect = 1'b1;
 		end
-	end
 
-	always_latch begin
-
-		if (addr == 3'b111) begin
+		else if (addr == 3'b111) begin
 			//increment counter every time the entire matrix is read or written through
 			count <= count + 1'b1;
 			
@@ -48,7 +46,7 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 			
 			end
 		
-		if (ph1) begin
+		else if (ph1) begin
 			//increment address value
 			addr = addr + 1'b1;
 		end
