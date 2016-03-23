@@ -27,26 +27,27 @@ endmodule
 module controller (input logic ph1, input logic ph2, input logic reset,
 				   output logic RWSelect, output logic [2:0] addr);
 
-	logic [5:0] count;
+	logic [2:0] count;
 
 	always_latch begin
 	
 		if (reset) begin
 			addr = 3'b000;
-			count = 6'b000000;
-			RWSelect = 1'b1;
+			count = 3'b000;
+			RWSelect = 1'b0;
 		end
 
-		else if (addr == 3'b111) begin
+		else if ((addr == 3'b111)&(ph2)) begin
 			//increment counter every time the entire matrix is read or written through
 			count <= count + 1'b1;
 			
 			//if we have gone through 64 life cycles, do a write
-			if (~(&count[5:1])) RWSelect <= count[0];
+			if (count == 3'b000) RWSelect <= 1'b1;
+			else RWSelect <= 1'b0;
 			
 			end
 		
-		else if (ph1) begin
+		if (ph1) begin
 			//increment address value
 			addr = addr + 1'b1;
 		end
@@ -72,8 +73,8 @@ module decoder (input  logic center, input logic [7:0] sides,
 
 		//consider center bits and bits of sum
 		casex ({center, sum})
-			4'bx011:
-				// whether alive or dead, a cell with 3 neighbors lives on
+			4'b0011:
+				// a dead cell with 3 neighbors comes back to life
 				nexton = 1;
 			4'b101x:
 				// if a live cell has 2 or 3 neighbors, it survives
