@@ -20,14 +20,22 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
   // register 0 hardwired to 0
   always_ff
 	if (reset) begin
-    RAM[0] <= 8'b00011000;
-    RAM[1] <= 8'b00110000;
-    RAM[2] <= 8'b00010000;
-    RAM[3] <= 8'b0;
-    RAM[4] <= 8'b0;
-    RAM[5] <= 8'b0;
-    RAM[6] <= 8'b0;
-    RAM[7] <= 8'b0;
+//    RAM[0] <= 8'b00011000;
+//    RAM[1] <= 8'b00110000;
+//    RAM[2] <= 8'b00010000;
+//    RAM[3] <= 8'b0;
+//    RAM[4] <= 8'b0;
+//    RAM[5] <= 8'b0;
+//    RAM[6] <= 8'b0;
+//    RAM[7] <= 8'b0;
+	RAM[0] <= 8'b10000000;
+	RAM[1] <= 8'b01000000;
+	RAM[2] <= 8'b00100000;
+	RAM[3] <= 8'b00010000;
+	RAM[4] <= 8'b00001000;
+	RAM[5] <= 8'b00000100;
+	RAM[6] <= 8'b00000010;
+	RAM[7] <= 8'b00000001;
 	end
    else if (ph2 & regwrite) RAM[wa] <= wd;
 

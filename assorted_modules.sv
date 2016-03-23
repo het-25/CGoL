@@ -27,13 +27,13 @@ endmodule
 module controller (input logic ph1, input logic ph2, input logic reset,
 				   output logic RWSelect, output logic [2:0] addr);
 
-	logic [2:0] count;
+	logic [3:0] count;
 
 	always_latch begin
 	
 		if (reset) begin
 			addr = 3'b000;
-			count = 6'b000000;
+			count = 4'b0;
 			RWSelect = 1'b1;
 		end
 
@@ -41,9 +41,10 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 			//increment counter every time the entire matrix is read or written through
 			count <= count + 1'b1;
 			
-			//if we have gone through 64 life cycles, do a write
-			if (count == 3'b111) RWSelect <= 1'b0;
-			else RWSelect <= 1'b1;
+			//if we have gone through 8 life cycles, do a write
+			
+			//if (&count == 1) RWSelect <= 1'b0;
+			//else RWSelect <= 1'b1;
 			
 			end
 		
