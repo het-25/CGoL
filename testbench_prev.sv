@@ -16,7 +16,7 @@ module testbench_prev();
 	end
 	
 	initial begin
-		$readmemb("prev.tv", testvectors)
+		$readmemb("prev.tv", testvectors);
 		vectornum = 0; errors = 0;
 		reset = 1; #3;
 		reset = 0;
@@ -30,13 +30,14 @@ module testbench_prev();
 		if ((rd !== rd_exp)|(rda !== rda_exp)|(rdb !== rdb_exp))
 		begin
 			$display("Error: inputs = %b; %b; %b; %b", regwrite, reset, addr, wd);
-			$display("outputs = %b (%b expected),%b (%b expected),%b (%b expected)", rd, rd_exp, rda, rda_exp, rdb, rdb_exp)
+			$display("outputs = %b (%b expected),%b (%b expected),%b (%b expected)", rd, rd_exp, rda, rda_exp, rdb, rdb_exp);
 			errors = errors + 1;
 		end
-		vectornum = vectornum + 1;
+		assign vectornum = vectornum + 1;
 		if (testvectors[vectornum] === 10'bx) begin
 			$display("Finished: %d vectors with %d errors", vectornum, errors);
+			$finish;
 		end
-		$finish;
+		
 	
 endmodule
