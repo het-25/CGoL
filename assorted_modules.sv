@@ -33,17 +33,17 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 	
 		if (reset) begin
 			addr = 3'b000;
-			count = 3'b000;
-			RWSelect = 1'b0;
+			count = 6'b000000;
+			RWSelect = 1'b1;
 		end
 
-		else if ((addr == 3'b111)&(ph2)) begin
+		else if ((addr == 3'b111)&(ph1)) begin
 			//increment counter every time the entire matrix is read or written through
 			count <= count + 1'b1;
 			
 			//if we have gone through 64 life cycles, do a write
-			if (count == 3'b000) RWSelect <= 1'b1;
-			else RWSelect <= 1'b0;
+			if (count == 3'b111) RWSelect <= 1'b0;
+			else RWSelect <= 1'b1;
 			
 			end
 		
