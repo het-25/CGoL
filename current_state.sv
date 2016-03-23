@@ -18,7 +18,7 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
   // read two ports combinationally
   // write third port during phase2 (second half-cycle)
   // register 0 hardwired to 0
-  always_latch
+  always_ff
 	if (reset) begin
     RAM[0] <= 8'b00011000;
     RAM[1] <= 8'b00110000;

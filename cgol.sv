@@ -1,12 +1,12 @@
 module cgol #(parameter WIDTH = 8, REGBITS = 3)
-                (input  logic               ph1, ph2, 
+                (input  logic               clk, 
                  input  logic               reset, 
                  output logic [WIDTH-1:0]   row, col);
 	//instantiate wires
 	logic [REGBITS-1:0] addr;
-	logic 		RWSelect;
+	logic 		RWSelect, ph1, ph2;
 	logic [WIDTH-1:0]   wd; 
-   	logic [WIDTH-1:0]   rd1, rd2, rd3, new_r;
+   logic [WIDTH-1:0]   rd1, rd2, rd3, new_r;
 	
 	//instantiate submodules
 	controller		controller1(ph1, ph2, reset, RWSelect, addr);
