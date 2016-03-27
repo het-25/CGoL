@@ -141,7 +141,7 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 	
 
 	assign en_addr = 1'b1;
-	assign addr_next =  addr+3'b001;
+	assign addr_next =  addr+3'b001
 	// maybe change to flopenr?
 	flopenr #(3) addr_flop(ph1, ph2, reset, en_addr, addr_next, addr);
 
