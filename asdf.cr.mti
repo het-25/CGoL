@@ -1,0 +1,29 @@
+C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv {1 {vlog -work work -sv -stats=none C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
+Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+-- Compiling module prev_state
+
+Top level modules:
+	prev_state
+
+} {} {}} C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv {1 {vlog -work work -sv -stats=none C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
+Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+-- Compiling module cgol
+
+Top level modules:
+	cgol
+
+} {} {}} C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv {1 {vlog -work work -sv -stats=none C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv
+Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+-- Compiling module current_state
+
+Top level modules:
+	current_state
+
+} {} {}} C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv {1 {vlog -work work -sv -stats=none C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv
+Model Technology ModelSim ALTERA vlog 10.3d Compiler 2014.10 Oct  7 2014
+-- Compiling module testbench_overall
+
+Top level modules:
+	testbench_overall
+
+} {} {}}

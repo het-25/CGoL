@@ -49,7 +49,7 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 		
 		if (ph1) begin
 			//increment address value
-			addr = addr + 1'b1;
+			addr <= addr + 1'b1;
 		end
 		
 	end
@@ -97,11 +97,6 @@ endmodule
 module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
 					output logic [7:0] row, output logic [7:0] col);
 
-	always_latch begin
-		// if clock phase 1 and LED should be on
-		if (ph1) begin
-			row <= (8'b00000001 << addr);
-			col <= ~BitIn;
-		end	
-	end	
+		assign row = (8'b00000001 << addr);
+		assign col = ~BitIn;	
 endmodule
