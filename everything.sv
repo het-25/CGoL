@@ -1,4 +1,114 @@
 //==========================================================================
+//                       CMOS Game of Life 
+// 	Vaibhav Viswanathan, vviswanathan@hmc.edu
+//  Evan Kahn, ekahn@hmc.edu
+// 	
+// 
+//  A hardware implementation of Conway's Game of Life for an 8x8 LED grid
+//==========================================================================
+
+
+//==========================================================================
+//                       TOP-LEVEL MODULE 
+// 	top-level module for CMOS Game of Life
+//  inputs: 2-phase clock and reset
+// 	outputs: row and column logic for 8x8 LED grid
+// 
+//==========================================================================
+module cgol #(parameter WIDTH = 8, REGBITS = 3)
+                (input  logic               ph1, ph2, 
+                 input  logic               reset, 
+                 output logic [WIDTH-1:0]   row, col);
+	//instantiate wires
+	logic [REGBITS-1:0] addr;
+	logic 		RWSelect;
+	logic [WIDTH-1:0]   wd; 
+   	logic [WIDTH-1:0]   rd1, rd2, rd3, new_r;
+	
+	//instantiate submodules
+	controller		controller1(ph1, ph2, reset, RWSelect, addr);
+	prev_state 		prev_state1(ph1, ph2, RWSelect, reset, addr, addr, wd, rd1, rd2, rd3);
+	decoder_top		top_decoder(rd2, rd1, rd3, new_r);
+	current_state	current_state1(ph1, ph2, ~RWSelect, reset, addr, addr, new_r, wd);
+	dispcontrol		disp_control(addr, wd, ph1, ph2, row, col);
+	
+endmodule
+
+//==========================================================================
+//                       PREVIOUS STATE REGISTER FILE
+// 	updates row when write is enabled
+//	combinationally outputs the current row of the GoL and row above and below
+// 
+//==========================================================================
+
+module prev_state #(parameter WIDTH = 8, REGBITS = 3)
+                (input  logic               ph1, ph2,
+                 input  logic               regwrite, reset, 
+                 input  logic [REGBITS-1:0] ra, wa,
+                 input  logic [WIDTH-1:0]   wd, 
+                 output logic [WIDTH-1:0]   rd1, rd2, rd3);
+
+   	logic	[WIDTH-1:0] RAM [2**REGBITS-1:0];
+
+  // 4 ported register file
+  // read three ports combinationally
+  // write fourth port during phase2 (second half-cycle)
+  
+  always_latch
+    if (ph2 & regwrite) begin
+		RAM[wa] <= wd;
+	 end
+	 
+	// 3 rows of data
+	logic [REGBITS-1:0] ra1, ra2, ra3;
+	
+	assign ra1 = ra - 'b1;
+	assign ra2 = ra;
+	assign ra3 = ra + 'b1;
+
+   assign rd1 = RAM[ra1];
+   assign rd2 = RAM[ra2];
+   assign rd3 = RAM[ra3];  
+  
+endmodule
+
+//==========================================================================
+//                       CURRENT STATE REGISTER FILE
+// 	updates row when write is enabled
+//	combinationally outputs the current row of the GoL
+// 
+//==========================================================================
+
+module current_state #(parameter WIDTH = 8, REGBITS = 3)
+                (input  logic               ph1, ph2, 
+                 input  logic               regwrite, reset,
+                 input  logic [REGBITS-1:0] ra, wa, 
+                 input  logic [WIDTH-1:0]   wd, 
+                 output logic [WIDTH-1:0]   rd);
+
+   logic [WIDTH-1:0] RAM [2**REGBITS-1:0];
+
+  // two ported register file
+  // read one ports combinationally
+  // write second port during phase2 (second half-cycle)
+  
+  always_latch
+	if (reset) begin
+    RAM[0] <= 8'b00011000;
+    RAM[1] <= 8'b00110000;
+    RAM[2] <= 8'b00010000;
+    RAM[3] <= 8'b0;
+    RAM[4] <= 8'b0;
+    RAM[5] <= 8'b0;
+    RAM[6] <= 8'b0;
+    RAM[7] <= 8'b0;
+	end
+   else if (ph2 & regwrite) RAM[wa] <= wd;
+
+  assign rd = RAM[ra];
+endmodule
+
+//==========================================================================
 //                         TOP-LEVEL DECODER MODULE
 // computes the next state of an entire row using 8 decoder modules
 //==========================================================================

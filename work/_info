@@ -1,0 +1,194 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Vaibhav/Desktop/CGoL_sim/CGoL
+vcgol
+Z0 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
+Z1 !s110 1459109403
+!i10b 1
+!s100 5=I?8WGilA9CYmPWoRCnF3
+I:ToWSo9OoU8LY<`9anZR51
+Z2 V`JN@9S9cnhjKRR_L]QIcM3
+!s105 cgol_sv_unit
+S1
+Z3 dC:/Users/Vaibhav/Documents/GitHub/CGoL
+Z4 w1458775258
+8C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
+FC:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
+L0 1
+Z5 OV;L;10.3d;59
+r1
+!s85 0
+31
+!s108 1459109403.835000
+!s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv|
+!i113 1
+Z6 o-work work -sv
+vcontroller
+R0
+R1
+!i10b 1
+!s100 ;[PfZ[Q1DnST@aP1l]AS]2
+I[YLV?@KkDMRV44GS;N=7X2
+R2
+Z7 !s105 assorted_modules_sv_unit
+S1
+R3
+R4
+Z8 8C:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv
+Z9 FC:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv
+L0 27
+R5
+r1
+!s85 0
+31
+Z10 !s108 1459109403.732000
+Z11 !s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv|
+Z12 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv|
+!i113 1
+R6
+vcurrent_state
+R0
+R1
+!i10b 1
+!s100 F0A4PCiTg:V29?>I78S1`2
+If2ljYmQQm`@<fS84OJG2M3
+R2
+!s105 current_state_sv_unit
+S1
+R3
+w1458779782
+8C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv
+FC:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv
+L0 8
+R5
+r1
+!s85 0
+31
+!s108 1459109403.926000
+!s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv|
+!i113 1
+R6
+vdecoder
+R0
+R1
+!i10b 1
+!s100 i``QUgEQRTEk>`nH2?fYh3
+IWflSHBnjWVAmY<L;nEP:73
+R2
+R7
+S1
+R3
+R4
+R8
+R9
+L0 66
+R5
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R6
+vdecoder_top
+R0
+R1
+!i10b 1
+!s100 z2L6[2gZ?N4FWR`Q0GRnb1
+I;>LA@36CLM>Fl3PKI1K_j3
+R2
+R7
+S1
+R3
+R4
+R8
+R9
+L0 5
+R5
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R6
+vdispcontrol
+R0
+R1
+!i10b 1
+!s100 R5cX__7g9k0N``D?_eBD>3
+IbWg>:GJh<3Q`Ej[I1c]Ah3
+R2
+R7
+S1
+R3
+R4
+R8
+R9
+L0 97
+R5
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R6
+vprev_state
+R0
+!s110 1459109404
+!i10b 1
+!s100 OQ6MP3J]nFeC2Xfa:WKE21
+IcMiEeKMP=jRhT3G5UZb4W1
+R2
+!s105 prev_state_sv_unit
+S1
+R3
+w1458777809
+8C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
+FC:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
+L0 8
+R5
+r1
+!s85 0
+31
+!s108 1459109404.019000
+!s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv|
+!i113 1
+R6
+vtestbench_overall
+R0
+R1
+!i10b 1
+!s100 ^e8;LnNVez>gC84LiCG9^0
+IUXcjHICC0P8<3m]dcP9`H0
+R2
+!s105 testbench_overall_sv_unit
+S1
+R3
+w1458785697
+8C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv
+FC:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1459109403.638000
+!s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv|
+!i113 1
+R6
