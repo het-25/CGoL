@@ -7,14 +7,62 @@
 //  A hardware implementation of Conway's Game of Life for an 8x8 LED grid
 //==========================================================================
 
+    module testbench_overall();
+    //initialize variables
+	logic ph1, ph2, reset;
+	logic [7:0] row, col, row_exp, col_exp;
+	logic [31:0] vectornum, errors;
+	logic [15:0] testvectors[500:0];
+	cgol dut(ph1, ph2, reset, row, col);
+	
+	initial $readmemb("overall.tv", testvectors); //read in testvectors
+	initial vectornum = 0;
+	initial errors = 0;
 
-//==========================================================================
-//                       TOP-LEVEL MODULE 
-// 	top-level module for CMOS Game of Life
-//  inputs: 2-phase clock and reset
-// 	outputs: row and column logic for 8x8 LED grid
-// 
-//==========================================================================
+	// start with reset
+	initial begin
+		reset <= 1; 
+		#10;
+		reset <= 0;
+	end
+	
+	// initialize two phase clock
+	always begin
+		ph1 = 0; ph2 = 0;
+		#1; ph1 = 1;
+		#4; ph1 = 0;
+		#1; ph2 = 1;
+		#4; ph2 = 0;
+	end
+
+	// apply testvectors on ph1
+	always @(posedge ph1) begin
+		{row_exp, col_exp} = testvectors[vectornum];
+	end
+
+
+	// compare expected to actual values on ph2
+	always @(posedge ph2) begin
+		if (!reset) begin
+			if ((row !== row_exp)|(col !== col_exp))
+			begin
+				//$display("Error: inputs = %b; %b; %b; %b", row, row_exp, col, col_exp);
+				$display("outputs = %b (%b expected) and %b (%b expected)\n vectornum: %d", row, row_exp, col, col_exp, vectornum);
+				errors = errors + 1;
+			end
+			assign vectornum = vectornum + 1;
+			
+			if (testvectors[vectornum] === 16'bx) begin
+				$display("Finished: %d vectors with %d errors", vectornum, errors);
+				$finish;
+			end
+		end
+
+	end
+	
+endmodule
+
+
 module cgol #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2, 
                  input  logic               reset, 
@@ -26,12 +74,34 @@ module cgol #(parameter WIDTH = 8, REGBITS = 3)
    	logic [WIDTH-1:0]   rd1, rd2, rd3, new_r;
 	
 	//instantiate submodules
-	controller		controller1(ph1, ph2, reset, RWSelect, addr);
-	prev_state 		prev_state1(ph1, ph2, RWSelect, reset, addr, addr, wd, rd1, rd2, rd3);
-	decoder_top		top_decoder(rd2, rd1, rd3, new_r);
-	current_state	current_state1(ph1, ph2, ~RWSelect, reset, addr, addr, new_r, wd);
-	dispcontrol		disp_control(addr, wd, ph1, ph2, row, col);
 	
+	all_synth all_synth1(ph1, ph2, reset,
+						 rd1, rd2, rd3, wd,
+						 row, col,
+						 RWSelect, addr[REGBITS-1:0], new_r);
+						 
+	current_state	current_state1(ph1, ph2, ~RWSelect, reset, addr, addr, new_r, wd);	
+	prev_state 		prev_state1(ph1, ph2, RWSelect, reset, addr, addr, wd, rd1, rd2, rd3);
+
+	
+endmodule
+
+//==========================================================================
+//						   ALL SYNTHESIZED MODULES
+//			module containing all logic intended for synthesis
+//
+//
+//==========================================================================
+
+module all_synth (input logic ph1, input logic ph2, input logic reset,
+				  input logic [7:0] rd1, rd2, rd3, wd,
+				  output logic [7:0] row, col,
+				  output logic RWSelect, output logic [2:0] addr, output logic [7:0] new_r);
+
+	controller		controller1(ph1, ph2, reset, RWSelect, addr);
+	decoder_top		top_decoder(rd2, rd1, rd3, new_r);
+	dispcontrol		disp_control(addr, wd, ph1, ph2, row, col);
+
 endmodule
 
 //==========================================================================
@@ -46,7 +116,7 @@ module prev_state #(parameter WIDTH = 8, REGBITS = 3)
                  input  logic               regwrite, reset, 
                  input  logic [REGBITS-1:0] ra, wa,
                  input  logic [WIDTH-1:0]   wd, 
-                 output logic [WIDTH-1:0]   rd1, rd2, rd3);
+                 output logic [WIDTH-1:0]   row_a, row, row_b);
 
    	logic	[WIDTH-1:0] RAM [2**REGBITS-1:0];
 
@@ -66,11 +136,12 @@ module prev_state #(parameter WIDTH = 8, REGBITS = 3)
 	assign ra2 = ra;
 	assign ra3 = ra + 'b1;
 
-   assign rd1 = RAM[ra1];
-   assign rd2 = RAM[ra2];
-   assign rd3 = RAM[ra3];  
+   assign row_a = RAM[ra1];
+   assign row = RAM[ra2];
+   assign row_b = RAM[ra3];  
   
 endmodule
+
 
 //==========================================================================
 //                       CURRENT STATE REGISTER FILE
@@ -109,6 +180,90 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
 endmodule
 
 //==========================================================================
+//                           SUBMODULES
+//
+// Basic submodules for cgol
+//==========================================================================
+
+module flop #(parameter WIDTH = 8)
+             (input  logic             ph1, ph2, 
+              input  logic [WIDTH-1:0] d, 
+              output logic [WIDTH-1:0] q);
+
+  logic [WIDTH-1:0] mid;
+
+  latch #(WIDTH) master(ph2, d, mid);
+  latch #(WIDTH) slave(ph1, mid, q);
+endmodule
+
+module flopr #(parameter WIDTH = 8)
+               (input  logic             ph1, ph2, reset,
+                input  logic [WIDTH-1:0] d, 
+                output logic [WIDTH-1:0] q);
+
+  logic [WIDTH-1:0] d2, resetval;
+
+  assign resetval = 0;
+
+  mux2 #(WIDTH) enmux(q, 1'b0, en, d2);
+  flop #(WIDTH) f(ph1, ph2, d2, q);
+endmodule
+
+module flopen #(parameter WIDTH = 8)
+               (input  logic             ph1, ph2, en,
+                input  logic [WIDTH-1:0] d, 
+                output logic [WIDTH-1:0] q);
+
+  logic [WIDTH-1:0] d2;
+
+  mux2 #(WIDTH) enmux(q, d, en, d2);
+  flop #(WIDTH) f(ph1, ph2, d2, q);
+endmodule
+
+module flopenr #(parameter WIDTH = 8)
+                (input  logic             ph1, ph2, reset, en,
+                 input  logic [WIDTH-1:0] d, 
+                 output logic [WIDTH-1:0] q);
+ 
+  logic [WIDTH-1:0] d2, resetval;
+
+  assign resetval = 0;
+
+  mux3 #(WIDTH) enrmux(q, d, resetval, {reset, en}, d2);
+  flop #(WIDTH) f(ph1, ph2, d2, q);
+endmodule
+
+module latch #(parameter WIDTH = 8)
+              (input  logic             ph, 
+               input  logic [WIDTH-1:0] d, 
+               output logic [WIDTH-1:0] q);
+
+  always_latch
+    if (ph) q <= d;
+endmodule
+
+module mux2 #(parameter WIDTH = 8)
+             (input  logic [WIDTH-1:0] d0, d1, 
+              input  logic             s, 
+              output logic [WIDTH-1:0] y);
+
+  assign y = s ? d1 : d0; 
+endmodule
+
+module mux3 #(parameter WIDTH = 8)
+             (input  logic [WIDTH-1:0] d0, d1, d2,
+              input  logic [1:0]       s, 
+              output logic [WIDTH-1:0] y);
+
+  always_comb 
+    casez (s)
+      2'b00: y = d0;
+      2'b01: y = d1;
+      2'b1?: y = d2;
+    endcase
+endmodule
+
+//==========================================================================
 //                         TOP-LEVEL DECODER MODULE
 // computes the next state of an entire row using 8 decoder modules
 //==========================================================================
@@ -139,30 +294,10 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 
 	logic [2:0] count;
 
-	always_latch begin
+	flopenr #(6) count_flop (ph1, ph2, reset, 1'b1, count + ('b1 && (&addr)), count);
+	flopenr #(3) addr_flop (ph1, ph2, reset, 1'b1, addr + 'b1, addr);
+	assign RWSelect = ~&count;
 	
-		if (reset) begin
-			addr = 3'b000;
-			count = 6'b000000;
-			RWSelect = 1'b1;
-		end
-
-		else if ((addr == 3'b111)&(ph1)) begin
-			//increment counter every time the entire matrix is read or written through
-			count <= count + 1'b1;
-			
-			//if we have gone through 64 life cycles, do a write
-			if (count == 3'b111) RWSelect <= 1'b0;
-			else RWSelect <= 1'b1;
-			
-			end
-		
-		if (ph1) begin
-			//increment address value
-			addr = addr + 1'b1;
-		end
-		
-	end
 endmodule
 
 
@@ -206,12 +341,10 @@ endmodule
 
 module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
 					output logic [7:0] row, output logic [7:0] col);
-
-	always_latch begin
-		// if clock phase 1 and LED should be on
-		if (ph1) begin
-			row <= (8'b00000001 << addr);
-			col <= ~BitIn;
-		end	
-	end	
+		always_latch begin
+			if (ph1) begin
+				row <= (8'b00000001 << addr);
+				col <= ~BitIn;
+			end
+		end
 endmodule
