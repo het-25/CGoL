@@ -10,7 +10,7 @@ module prev_state #(parameter WIDTH = 8, REGBITS = 3)
                  input  logic               regwrite, reset, 
                  input  logic [REGBITS-1:0] ra, wa,
                  input  logic [WIDTH-1:0]   wd, 
-                 output logic [WIDTH-1:0]   rd1, rd2, rd3);
+                 output logic [WIDTH-1:0]   row_a, row, row_b);
 
    	logic	[WIDTH-1:0] RAM [2**REGBITS-1:0];
 
@@ -30,8 +30,8 @@ module prev_state #(parameter WIDTH = 8, REGBITS = 3)
 	assign ra2 = ra;
 	assign ra3 = ra + 'b1;
 
-   assign rd1 = RAM[ra1];
-   assign rd2 = RAM[ra2];
-   assign rd3 = RAM[ra3];  
+   assign row_a = RAM[ra1];
+   assign row = RAM[ra2];
+   assign row_b = RAM[ra3];  
   
 endmodule
