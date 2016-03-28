@@ -160,9 +160,12 @@ endmodule
 
 module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic ph1, input logic ph2,
 					output logic [7:0] row, output logic [7:0] col);
-
-		assign row = (8'b00000001 << addr);
-		assign col = ~BitIn;
+		always_latch begin
+			if (ph1) begin
+				row <= (8'b00000001 << addr);
+				col <= ~BitIn;
+			end
+		end
 endmodule
 
 
