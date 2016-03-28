@@ -13,7 +13,7 @@
 	// start with reset
 	initial begin
 		reset <= 1; 
-		#5;
+		#10;
 		reset <= 0;
 	end
 	
@@ -28,24 +28,25 @@
 
 	// apply testvectors on ph1
 	always @(posedge ph1) begin
-		#1; {row_exp, col_exp} = testvectors[vectornum];
+		{row_exp, col_exp} = testvectors[vectornum];
 	end
 
 
 	// compare expected to actual values on ph2
 	always @(posedge ph2) begin
-		if ((row !== row_exp)|(col !== col_exp))
-		begin
-			//$display("Error: inputs = %b; %b; %b; %b", row, row_exp, col, col_exp);
-			$display("outputs = %b (%b expected) and %b (%b expected)\n vectornum: %d", row, row_exp, col, col_exp, vectornum);
-			errors = errors + 1;
-		end
-		
-		assign vectornum = vectornum + 1;
-		
-		if (testvectors[vectornum] === 16'bx) begin
-			$display("Finished: %d vectors with %d errors", vectornum, errors);
-			$finish;
+		if (!reset) begin
+			if ((row !== row_exp)|(col !== col_exp))
+			begin
+				//$display("Error: inputs = %b; %b; %b; %b", row, row_exp, col, col_exp);
+				$display("outputs = %b (%b expected) and %b (%b expected)\n vectornum: %d", row, row_exp, col, col_exp, vectornum);
+				errors = errors + 1;
+			end
+			assign vectornum = vectornum + 1;
+			
+			if (testvectors[vectornum] === 16'bx) begin
+				$display("Finished: %d vectors with %d errors", vectornum, errors);
+				$finish;
+			end
 		end
 
 	end

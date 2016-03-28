@@ -13,7 +13,7 @@
 	// start with reset
 	initial begin
 		reset <= 1; 
-		#5;
+		#10;
 		reset <= 0;
 	end
 	
@@ -37,7 +37,7 @@
 		if ((row !== row_exp)|(col !== col_exp))
 		begin
 			//$display("Error: inputs = %b; %b; %b; %b", row, row_exp, col, col_exp);
-			$display("outputs = %b (%b expected) and %b (%b expected)", row, row_exp, col, col_exp);
+			$display("outputs = %b (%b expected) and %b (%b expected)\n vectornum: %d", row, row_exp, col, col_exp, vectornum);
 			errors = errors + 1;
 		end
 		

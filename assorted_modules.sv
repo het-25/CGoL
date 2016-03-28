@@ -112,39 +112,11 @@ module controller (input logic ph1, input logic ph2, input logic reset,
 				   output logic RWSelect, output logic [2:0] addr);
 
 	logic [2:0] count;
-	logic en_addr;
 
-	always_latch begin
+	flopenr #(6) count_flop (ph1, ph2, reset, 1'b1, count + ('b1 && (&addr)), count);
+	flopenr #(3) addr_flop (ph1, ph2, reset, 1'b1, addr + 'b1, addr);
+	assign RWSelect = ~&count;
 	
-		if (reset) begin
-			//addr = 3'b000;
-			count = 6'b000000;
-			RWSelect = 1'b1;
-		end
-
-		else if ((addr == 3'b111)&(ph1)) begin
-			//increment counter every time the entire matrix is read or written through
-			count <= count + 1'b1;
-			
-			//if we have gone through 64 life cycles, do a write
-			if (count == 3'b111) RWSelect <= 1'b0;
-			else RWSelect <= 1'b1;
-			
-			end
-		
-		//if (ph1) begin
-			//increment address value
-			//addr <= addr + 1'b1;
-		//end
-
-	end
-	
-
-	assign en_addr = 1'b1;
-	assign addr_next =  addr+3'b001;
-	// maybe change to flopenr?
-	flopenr #(3) addr_flop(ph1, ph2, reset, en_addr, addr_next, addr);
-
 endmodule
 
 
@@ -190,7 +162,7 @@ module dispcontrol (input logic [2:0] addr, input logic [7:0] BitIn, input logic
 					output logic [7:0] row, output logic [7:0] col);
 
 		assign row = (8'b00000001 << addr);
-		assign col = ~BitIn;	
+		assign col = ~BitIn;
 endmodule
 
 
