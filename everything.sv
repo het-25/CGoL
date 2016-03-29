@@ -7,6 +7,9 @@
 //  A hardware implementation of Conway's Game of Life for an 8x8 LED grid
 //==========================================================================
 
+// Set delay unit to 1 ns and simulation precision to 0.1 ns (100 ps)
+`timescale 1ns / 100ps 
+
     module testbench_overall();
     //initialize variables
 	logic ph1, ph2, reset;
@@ -289,13 +292,14 @@ endmodule
 // every 64 frames, switch from read to write for one frame
 //==========================================================================
 
-module controller (input logic ph1, input logic ph2, input logic reset,
+module controller #(parameter COUNT_W = 3)
+				(input logic ph1, input logic ph2, input logic reset,
 				   output logic RWSelect, output logic [2:0] addr);
 
 	logic [2:0] count;
 
-	flopenr #(6) count_flop (ph1, ph2, reset, 1'b1, count + ('b1 && (&addr)), count);
-	flopenr #(3) addr_flop (ph1, ph2, reset, 1'b1, addr + 'b1, addr);
+	flopenr #(COUNT_W) count_flop (ph1, ph2, reset, 1'b1, count + {(COUNT_W-1)'b0, (1'b1 && (&addr))}, count);
+	flopenr #(3) addr_flop (ph1, ph2, reset, 1'b1, addr + 3'b001, addr);
 	assign RWSelect = ~&count;
 	
 endmodule
