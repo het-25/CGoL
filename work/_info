@@ -8,187 +8,371 @@ z2
 !i10f 100
 cModel Technology
 dC:/Users/Vaibhav/Desktop/CGoL_sim/CGoL
-vcgol
+vall_synth
 Z0 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
-Z1 !s110 1459110990
+Z1 !s110 1459234436
 !i10b 1
-!s100 5=I?8WGilA9CYmPWoRCnF3
-I:ToWSo9OoU8LY<`9anZR51
+!s100 <NiRFTTNPInWoSPWnX3@[0
+If[?4ccYAYNF:F^Yhdl2?A1
 Z2 V`JN@9S9cnhjKRR_L]QIcM3
-!s105 cgol_sv_unit
+Z3 !s105 cgol_sv_unit
 S1
-Z3 dC:/Users/Vaibhav/Documents/GitHub/CGoL
-w1458775258
-8C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
-FC:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
-L0 1
-Z4 OV;L;10.3d;59
+Z4 dC:/Users/Vaibhav/Documents/GitHub/CGoL
+Z5 w1459234068
+Z6 8C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
+Z7 FC:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv
+Z8 L0 31
+Z9 OV;L;10.3d;59
 r1
 !s85 0
 31
-!s108 1459110990.270000
-!s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv|
-!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv|
+Z10 !s108 1459234436.541000
+Z11 !s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv|
+Z12 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/cgol.sv|
 !i113 1
-Z5 o-work work -sv
+Z13 o-work work -sv
+vcgol
+R0
+R1
+!i10b 1
+!s100 nWRaci78z<R63QiJN_<cU1
+IchL3igkSKXCjUnKHdXP_A0
+R2
+R3
+S1
+R4
+R5
+R6
+R7
+L0 1
+R9
+r1
+!s85 0
+31
+R10
+R11
+R12
+!i113 1
+R13
 vcontroller
 R0
 R1
 !i10b 1
-!s100 z`T3]:129c>J>I<ZYod3Z2
-ImUIST:0A4QHA]j8EPFSPA0
+!s100 gi^MZK>0TEUeGAlz6PNR92
+ICFP_[efV`2oA<adfERRTR3
 R2
-Z6 !s105 assorted_modules_sv_unit
+Z14 !s105 assorted_modules_sv_unit
 S1
-R3
-Z7 w1459110935
-Z8 8C:\Users\Vaibhav\Documents\GitHub\CGoL\assorted_modules.sv
-Z9 FC:\Users\Vaibhav\Documents\GitHub\CGoL\assorted_modules.sv
-L0 27
 R4
+R5
+Z15 8C:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv
+Z16 FC:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv
+L0 111
+R9
 r1
 !s85 0
 31
-Z10 !s108 1459110990.163000
-Z11 !s107 C:\Users\Vaibhav\Documents\GitHub\CGoL\assorted_modules.sv|
-Z12 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\Vaibhav\Documents\GitHub\CGoL\assorted_modules.sv|
+Z17 !s108 1459234436.395000
+Z18 !s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv|
+Z19 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/assorted_modules.sv|
 !i113 1
-R5
+R13
 vcurrent_state
 R0
-R1
+!s110 1459234439
 !i10b 1
 !s100 F0A4PCiTg:V29?>I78S1`2
 If2ljYmQQm`@<fS84OJG2M3
 R2
 !s105 current_state_sv_unit
 S1
-R3
-w1458779782
+R4
+R5
 8C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv
 FC:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv
 L0 8
-R4
+R9
 r1
 !s85 0
 31
-!s108 1459110990.361000
+!s108 1459234439.919000
 !s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/current_state.sv|
 !i113 1
-R5
+R13
 vdecoder
 R0
 R1
 !i10b 1
-!s100 i``QUgEQRTEk>`nH2?fYh3
-IUPZ2:6C3eDV96>gNc1z>m1
+!s100 A;ei@nAT>Bh>9ZhVK1CK11
+IGhmMLAbOj4gV784[77hb_0
 R2
-R6
+R14
 S1
-R3
-R7
-R8
-R9
-L0 66
 R4
+R5
+R15
+R16
+L0 130
+R9
 r1
 !s85 0
 31
-R10
-R11
-R12
+R17
+R18
+R19
 !i113 1
-R5
+R13
 vdecoder_top
 R0
 R1
 !i10b 1
-!s100 z2L6[2gZ?N4FWR`Q0GRnb1
-I5Nm>m7d0:iDTYCPj<iLiN3
+!s100 PgA_5T726Y8Hj>E=:GPOC1
+ICNjnZFdZHoRSaWUSGhKfG3
 R2
-R6
+R14
 S1
-R3
-R7
-R8
-R9
-L0 5
 R4
+R5
+R15
+R16
+L0 89
+R9
 r1
 !s85 0
 31
-R10
-R11
-R12
+R17
+R18
+R19
 !i113 1
-R5
+R13
 vdispcontrol
 R0
 R1
 !i10b 1
-!s100 1MSCE]4F4c]?H`KC:W03c2
-Io;E1_M>2?BEJHQKJG1LD>2
+!s100 @8_m1QQo3kF85KNflC]XE0
+Iok[kmWA0^K[Fg<FoLa>9Y1
 R2
-R6
+R14
 S1
-R3
-R7
-R8
-R9
-L0 97
 R4
+R5
+R15
+R16
+L0 161
+R9
 r1
 !s85 0
 31
-R10
-R11
-R12
+R17
+R18
+R19
 !i113 1
-R5
-vprev_state
+R13
+vflop
 R0
 R1
 !i10b 1
-!s100 OQ6MP3J]nFeC2Xfa:WKE21
-IcMiEeKMP=jRhT3G5UZb4W1
+!s100 Og1NZ>lAkC2akVLUZbDN70
+ICoAKENGo9gcj[484PWa;N3
 R2
-!s105 prev_state_sv_unit
+R14
 S1
-R3
-w1458777809
-8C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
-FC:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
-L0 8
 R4
+R5
+R15
+R16
+L0 7
+R9
 r1
 !s85 0
 31
-!s108 1459110990.472000
+R17
+R18
+R19
+!i113 1
+R13
+vflopen
+R0
+R1
+!i10b 1
+!s100 Ia4i1Wd_[;Y_oQDWKU43Z1
+IY[O5;nL32OQU>b5_kQ0Lk0
+R2
+R14
+S1
+R4
+R5
+R15
+R16
+R8
+R9
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R13
+vflopenr
+R0
+R1
+!i10b 1
+!s100 _>DG35R7J]hJcjDTV5C3;1
+IHAN1e_YJ417jb46KEcIdL3
+R2
+R14
+S1
+R4
+R5
+R15
+R16
+L0 42
+R9
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R13
+vflopr
+R0
+R1
+!i10b 1
+!s100 oiFT;Q13:aV4M5O1Vc^hB1
+IOGO3aD9@R<<74JUcj]PhH2
+R2
+R14
+S1
+R4
+R5
+R15
+R16
+L0 18
+R9
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R13
+vlatch
+R0
+R1
+!i10b 1
+!s100 8R?aBeD_=f3DI248dCRoP1
+ITiaI;nW5kiC_?i0GTF`1`0
+R2
+R14
+S1
+R4
+R5
+R15
+R16
+L0 55
+R9
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R13
+vmux2
+R0
+R1
+!i10b 1
+!s100 >[;7Lg@G:[GIUg1[A]GNc1
+IamEokhS=lT496OOLlC:`B1
+R2
+R14
+S1
+R4
+R5
+R15
+R16
+L0 64
+R9
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R13
+vmux3
+R0
+R1
+!i10b 1
+!s100 Nik`Anl2d=Jobi]BkiB7O3
+Ic3ZW9lmn29;2WYT@PR]2V2
+R2
+R14
+S1
+R4
+R5
+R15
+R16
+L0 72
+R9
+r1
+!s85 0
+31
+R17
+R18
+R19
+!i113 1
+R13
+vprev_state
+R0
+!s110 1459234441
+!i10b 1
+!s100 o6egV`:bmM55GgeII7]9G1
+If:16Q3??5?G:B4i3a>?Ig0
+R2
+!s105 prev_state_sv_unit
+S1
+R4
+R5
+8C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
+FC:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv
+L0 8
+R9
+r1
+!s85 0
+31
+!s108 1459234441.698000
 !s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/prev_state.sv|
 !i113 1
-R5
+R13
 vtestbench_overall
 R0
 R1
 !i10b 1
-!s100 ^e8;LnNVez>gC84LiCG9^0
-IUXcjHICC0P8<3m]dcP9`H0
+!s100 Jk[;0d1i3W4l?aMGcAUV]2
+IWF_=jUKSaOb87lbH9nL<f3
 R2
 !s105 testbench_overall_sv_unit
 S1
-R3
-w1458785697
+R4
+w1459234385
 8C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv
 FC:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv
 L0 1
-R4
+R9
 r1
 !s85 0
 31
-!s108 1459110990.081000
+!s108 1459234436.302000
 !s107 C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv|
 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/Vaibhav/Documents/GitHub/CGoL/testbench_overall.sv|
 !i113 1
-R5
+R13
