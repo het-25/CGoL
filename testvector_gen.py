@@ -40,12 +40,7 @@ board = [
 [0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0],
 ]
-iters = 4
-
-for i in range (7):
-    print_tv()
-
-board = update_board()
+iters = 10
 
 for i in range (iters):
     for i in range(8):

@@ -3,10 +3,10 @@
 	logic ph1, ph2, reset;
 	logic [7:0] row, col, row_exp, col_exp;
 	logic [31:0] vectornum, errors;
-	logic [15:0] testvectors[500:0];
+	logic [15:0] testvectors[1000:0];
 	cgol dut(ph1, ph2, reset, row, col);
 	
-	initial $readmemb("overall.tv", testvectors); //read in testvectors
+	initial $readmemb("gen.tv", testvectors); //read in testvectors
 	initial vectornum = 0;
 	initial errors = 0;
 
