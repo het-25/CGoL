@@ -34,7 +34,8 @@ module flopen #(parameter WIDTH = 8)
                 output logic [WIDTH-1:0] q);
 
   logic [WIDTH-1:0] d2;
-
+  logic en;
+  
   mux2 #(WIDTH) enmux(q, d, en, d2);
   flop #(WIDTH) f(ph1, ph2, d2, q);
 endmodule
@@ -114,7 +115,7 @@ module controller #(parameter COUNT_W = 3)
 
 	logic [2:0] count;
 
-	flopenr #(COUNT_W) count_flop (ph1, ph2, reset, 1'b1, count + {(COUNT_W-1)'b0, (1'b1 && (&addr))}, count);
+	flopenr #(COUNT_W) count_flop (ph1, ph2, reset, 1'b1, count + {2'b0, (1'b1 && (&addr))}, count);
 	flopenr #(3) addr_flop (ph1, ph2, reset, 1'b1, addr + 3'b001, addr);
 	assign RWSelect = ~&count;
 	
