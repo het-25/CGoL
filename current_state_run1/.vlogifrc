@@ -44,7 +44,9 @@ simReNetlistAll = 'nil
 simVerilogLaiLmsiNetlisting = 'nil
 
 ;Netlist These Views
-verilogSimViewList = '("behavioral" "functional" "schematic" "cmos_sch")
+verilogSimViewList = '("behavioral" "functional" "system" "verilog" "pld_verilog"
+    "lai_verilog" "lmsi_verilog" "schematic" "symbol"
+)
 
 ;Netlist Automatically to Simulate Design Changes
 simVerilogAutoNetlisting = t
@@ -116,7 +118,7 @@ simVerilogLeapfrogCosimMessage = "+Leapfrog_prefixLeapfrog"
 simVerilogLeapfrogCosimWarnOff = t
 
 ;Stop Netlisting at Views 
-verilogSimStopList = '("behavioral" "functional")
+verilogSimStopList = '("verilog" "pld_verilog" "lai_verilog" "lmsi_verilog" "symbol")
 
 ;Global Power Nets
 simVerilogPwrNetList = '("VDD!")

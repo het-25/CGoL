@@ -9,6 +9,5 @@ muddlib11 nand2_1x cmos_sch cds5
 muddlib11 a2o1_1x cmos_sch cds6
 muddlib11 nor2_1x cmos_sch cds7
 muddlib11 nor2_2x cmos_sch cds8
-muddlib11 nand3_1x cmos_sch cds9
 muddlib11 mux2_c_1x cmos_sch cds10
 currentstate_synth current_state schematic cds11
