@@ -1,6 +1,6 @@
 // Library - muddlib11, Cell - nand2_2x, View - cmos_sch
 // LAST TIME SAVED: Feb 16 19:56:15 2012
-// NETLIST TIME: Mar 29 22:30:22 2016
+// NETLIST TIME: Mar 30 00:04:57 2016
 `timescale 1ns / 100ps 
 
 module nand2_2x ( y, a, b );

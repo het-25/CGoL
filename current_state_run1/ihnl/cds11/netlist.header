@@ -1,6 +1,6 @@
 // Library - currentstate_synth, Cell - current_state, View - schematic
-// LAST TIME SAVED: Mar 29 22:27:22 2016
-// NETLIST TIME: Mar 29 22:30:22 2016
+// LAST TIME SAVED: Mar 30 00:01:44 2016
+// NETLIST TIME: Mar 30 00:04:57 2016
 `timescale 1ns / 100ps 
 
 module current_state ( ph1, ph2, regwrite, reset, ra, wa, wd, rd );
@@ -15,14 +15,14 @@ input [7:0]  wd;
 input [2:0]  ra;
 wire  [2:0]   ra;
 wire    ph1;
-wire    n72;
 wire    n70;
+wire  [63:0]   RAM;
 wire    n73;
-wire    n68;
-wire    n71;
-wire    n66;
 wire    n69;
+wire    n71;
+wire    n68;
 wire    n67;
+wire    n66;
 wire    n64;
 wire    n63;
 wire    n62;
@@ -40,7 +40,7 @@ wire    n51;
 wire    n50;
 wire    n49;
 wire    n48;
-wire  [63:0]   RAM;
+wire    n72;
 wire    n46;
 wire    n45;
 wire    n44;

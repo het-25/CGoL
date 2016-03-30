@@ -1,0 +1,19 @@
+
+`timescale 1ns / 100ps
+
+module test;
+
+
+
+reg  ph1, ph2, regwrite, reset;
+
+wire [7:0]  rd;
+
+reg [2:0]  wa;
+reg [7:0]  wd;
+reg [2:0]  ra;
+
+
+
+current_state top(ph1, ph2, regwrite, reset, ra, wa, wd, rd); 
+ 
