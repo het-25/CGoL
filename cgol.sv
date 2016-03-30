@@ -36,5 +36,5 @@ module all_synth (input logic ph1, input logic ph2, input logic reset,
 	controller		controller1(ph1, ph2, reset, RWSelect, addr);
 	decoder_top		top_decoder(rd2, rd1, rd3, new_r);
 	dispcontrol		disp_control(addr, wd, ph1, ph2, row, col);
-
+	current_state	current_state1(ph1, ph2, ~RWSelect, reset, addr, addr, new_r, wd);
 endmodule

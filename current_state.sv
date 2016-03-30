@@ -8,7 +8,7 @@
 module current_state #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2, 
                  input  logic               regwrite, reset,
-                 input  logic [REGBITS-1:0] ra, wa, 
+                 input  logic [REGBITS-1:0] ra, 
                  input  logic [WIDTH-1:0]   wd, 
                  output logic [WIDTH-1:0]   rd);
 
@@ -31,7 +31,7 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
 			RAM[7] <= 8'b0;
     		end
     		else if (regwrite) begin
-    			RAM[wa] <= wd;
+    			RAM[ra] <= wd;
     		end
 	end
   assign rd = RAM[ra];

@@ -83,8 +83,8 @@ module cgol #(parameter WIDTH = 8, REGBITS = 3)
 						 row, col,
 						 RWSelect, addr[REGBITS-1:0], new_r);
 						 
-	current_state	current_state1(ph1, ph2, ~RWSelect, reset, addr, addr, new_r, wd);	
-	prev_state 		prev_state1(ph1, ph2, RWSelect, reset, addr, addr, wd, rd1, rd2, rd3);
+	current_state	current_state1(ph1, ph2, ~RWSelect, reset, addr, new_r, wd);	
+	prev_state 		prev_state1(ph1, ph2, RWSelect, reset, addr, wd, rd1, rd2, rd3);
 
 	
 endmodule
@@ -117,7 +117,7 @@ endmodule
 module prev_state #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2,
                  input  logic               regwrite, reset, 
-                 input  logic [REGBITS-1:0] ra, wa,
+                 input  logic [REGBITS-1:0] ra,
                  input  logic [WIDTH-1:0]   wd, 
                  output logic [WIDTH-1:0]   row_a, row, row_b);
 
@@ -129,7 +129,7 @@ module prev_state #(parameter WIDTH = 8, REGBITS = 3)
   
   always_latch
     if (ph2 & regwrite) begin
-		RAM[wa] <= wd;
+		RAM[ra] <= wd;
 	 end
 	 
 	// 3 rows of data
@@ -156,7 +156,7 @@ endmodule
 module current_state #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2, 
                  input  logic               regwrite, reset,
-                 input  logic [REGBITS-1:0] ra, wa, 
+                 input  logic [REGBITS-1:0] ra, 
                  input  logic [WIDTH-1:0]   wd, 
                  output logic [WIDTH-1:0]   rd);
 
@@ -177,7 +177,7 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
     RAM[6] <= 8'b0;
     RAM[7] <= 8'b0;
 	end
-   else if (ph2 & regwrite) RAM[wa] <= wd;
+   else if (ph2 & regwrite) RAM[ra] <= wd;
 
   assign rd = RAM[ra];
 endmodule
