@@ -19,7 +19,7 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
   // write second port during phase2 (second half-cycle)
   
   always_latch
-	if (reset) begin
+	if (ph2 & reset) begin
     RAM[0] <= 8'b00011000;
     RAM[1] <= 8'b00110000;
     RAM[2] <= 8'b00010000;
