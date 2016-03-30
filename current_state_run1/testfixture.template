@@ -1,0 +1,28 @@
+
+`timescale 1ns / 100ps
+
+module test;
+
+
+
+reg  ph1, ph2, regwrite, reset;
+
+wire [7:0]  rd;
+
+reg [2:0]  wa;
+reg [7:0]  wd;
+reg [2:0]  ra;
+
+
+
+current_state top(ph1, ph2, regwrite, reset, ra, wa, wd, rd); 
+ 
+
+`ifdef verilog
+
+ //please enter any additional verilog stimulus in the /hdd/home/ekahn/IC_CAD/current_state_run1/testfixture.verilog file
+`include 
+     "/hdd/home/ekahn/IC_CAD/current_state_run1/testfixture.verilog"
+`endif
+
+endmodule 

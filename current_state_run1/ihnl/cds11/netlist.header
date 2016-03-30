@@ -1,0 +1,114 @@
+// Library - currentstate_synth, Cell - current_state, View - schematic
+// LAST TIME SAVED: Mar 29 22:27:22 2016
+// NETLIST TIME: Mar 29 22:30:22 2016
+`timescale 1ns / 100ps 
+
+module current_state ( ph1, ph2, regwrite, reset, ra, wa, wd, rd );
+
+
+input  ph1, ph2, regwrite, reset;
+
+output [7:0]  rd;
+
+input [2:0]  wa;
+input [7:0]  wd;
+input [2:0]  ra;
+wire  [2:0]   ra;
+wire    ph1;
+wire    n72;
+wire    n70;
+wire    n73;
+wire    n68;
+wire    n71;
+wire    n66;
+wire    n69;
+wire    n67;
+wire    n64;
+wire    n63;
+wire    n62;
+wire    n61;
+wire    n60;
+wire    n59;
+wire    n58;
+wire    n57;
+wire    n56;
+wire    n55;
+wire    n54;
+wire    n53;
+wire    n52;
+wire    n51;
+wire    n50;
+wire    n49;
+wire    n48;
+wire  [63:0]   RAM;
+wire    n46;
+wire    n45;
+wire    n44;
+wire    n43;
+wire    n42;
+wire    n41;
+wire    n40;
+wire    n39;
+wire    n38;
+wire    n37;
+wire    n36;
+wire    n35;
+wire    n34;
+wire    n33;
+wire    n32;
+wire    n31;
+wire    n30;
+wire    n29;
+wire    n65;
+wire    n27;
+wire    n26;
+wire    n25;
+wire    n24;
+wire    n23;
+wire    n22;
+wire    n21;
+wire    n47;
+wire    n19;
+wire    n18;
+wire    n17;
+wire    n16;
+wire    n15;
+wire    n14;
+wire    n13;
+wire    n28;
+wire    N33;
+wire    N32;
+wire    n20;
+wire    N30;
+wire    N29;
+wire    n12;
+wire    N26;
+wire    N28;
+wire    N25;
+wire    N24;
+wire    N31;
+wire    N22;
+wire    N20;
+wire    N19;
+wire    N21;
+wire    N27;
+wire    N17;
+wire    N16;
+wire    N23;
+wire    regwrite;
+wire    reset;
+wire    N15;
+wire  [7:0]   rd;
+wire    N18;
+wire  [7:0]   wd;
+wire  [2:0]   wa;
+wire    ph2;
+
+
+
+specify 
+    specparam CDS_LIBNAME  = "currentstate_synth";
+    specparam CDS_CELLNAME = "current_state";
+    specparam CDS_VIEWNAME = "schematic";
+endspecify
+

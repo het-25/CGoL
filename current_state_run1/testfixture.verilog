@@ -1,0 +1,21 @@
+
+// Verilog stimulus file.
+// Please do not create a module in this file.
+
+
+// Default verilog stimulus. 
+
+initial
+begin 
+
+   ph1 = 1'b0;
+   ph2 = 1'b0;
+   ra[2:0] = 3'b000;
+
+   regwrite = 1'b0;
+   reset = 1'b0;
+   wa[2:0] = 3'b000;
+
+   wd[7:0] = 8'b00000000;
+
+end 

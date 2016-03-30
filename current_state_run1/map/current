@@ -1,0 +1,63 @@
+( ( nil
+  version "2.1"
+  mapType "incremental"
+  blockName "current_state"
+  repList "behavioral functional schematic cmos_sch"
+  stopList "behavioral functional"
+  globalList "vdd! gnd!"
+  hierDelim "."
+  hierPrefix "test.top"
+  globalHierPrefix "cds_globals."
+  netlistDir "/hdd/home/ekahn/IC_CAD/current_state_run1"
+  busRef   "ORDERED"
+  netType   "BUS"
+  leftStr  "["
+  rangeStr  ":"
+  rightStr  "]"
+ )
+( instViewTable
+ )
+( defbus
+( "ra" 2 0  "ra" 2 0  )
+( "wd" 7 0  "wd" 7 0  )
+( "wa" 2 0  "wa" 2 0  )
+( "rd" 7 0  "rd" 7 0  )
+( "RAM" 63 0  "RAM" 63 0  )
+ )
+( net
+( "gnd!" "cds_globals.gnd_" )
+( "vdd!" "cds_globals.vdd_" )
+ )
+( inst
+ )
+( model
+( "muddlib11/inv_4x/cmos_sch" "inv_4x" )
+( "currentstate_synth/current_state/schematic" "current_state" )
+( "muddlib11/nand3_1x/cmos_sch" "nand3_1x" )
+( "muddlib11/nand2_2x/cmos_sch" "nand2_2x" )
+( "muddlib11/mux2_c_1x/cmos_sch" "mux2_c_1x" )
+( "muddlib11/latch_c_1x/cmos_sch" "latch_c_1x" )
+( "muddlib11/a2o1_1x/cmos_sch" "a2o1_1x" )
+( "muddlib11/and2_1x/cmos_sch" "and2_1x" )
+( "muddlib11/nor2_1x/cmos_sch" "nor2_1x" )
+( "muddlib11/nand2_1x/cmos_sch" "nand2_1x" )
+( "muddlib11/nor2_2x/cmos_sch" "nor2_2x" )
+( "muddlib11/inv_1x/cmos_sch" "inv_1x" )
+ )
+( term
+ )
+( param
+ )
+( "latch_c_1x" "ihnl/cds0/map" )
+( "inv_1x" "ihnl/cds1/map" )
+( "nand2_2x" "ihnl/cds3/map" )
+( "nand3_1x" "ihnl/cds9/map" )
+( "mux2_c_1x" "ihnl/cds10/map" )
+( "inv_4x" "ihnl/cds2/map" )
+( "nor2_1x" "ihnl/cds7/map" )
+( "and2_1x" "ihnl/cds4/map" )
+( "current_state" "ihnl/cds11/map" )
+( "nand2_1x" "ihnl/cds5/map" )
+( "a2o1_1x" "ihnl/cds6/map" )
+( "nor2_2x" "ihnl/cds8/map" )
+ )
