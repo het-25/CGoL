@@ -29,10 +29,10 @@ module current_state #(parameter WIDTH = 8, REGBITS = 3)
 			RAM[5] <= 8'b0;
 			RAM[6] <= 8'b0;
 			RAM[7] <= 8'b0;
-    	end
-    	else if (regwrite) begin
-    		RAM[wa] <= wd;
-    	end
+    		end
+    		else if (regwrite) begin
+    			RAM[wa] <= wd;
+    		end
 	end
   assign rd = RAM[ra];
 endmodule

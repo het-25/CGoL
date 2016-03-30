@@ -1,12 +1,11 @@
 CADENCE IHNL01070
 $model
-muddlib11/nor2_1x/cmos_sch nor2_1x
 currentstate_synth/current_state/schematic current_state
+muddlib11/nor2_1x/cmos_sch nor2_1x
 muddlib11/inv_4x/cmos_sch inv_4x
 muddlib11/nand2_2x/cmos_sch nand2_2x
 muddlib11/nand2_1x/cmos_sch nand2_1x
 muddlib11/nor2_2x/cmos_sch nor2_2x
-muddlib11/nand3_1x/cmos_sch nand3_1x
 muddlib11/latch_c_1x/cmos_sch latch_c_1x
 muddlib11/mux2_c_1x/cmos_sch mux2_c_1x
 muddlib11/inv_1x/cmos_sch inv_1x

@@ -1,18 +1,18 @@
-// Library - muddlib11, Cell - inv_4x, View - cmos_sch
-// LAST TIME SAVED: Feb 16 19:56:16 2012
-// NETLIST TIME: Mar 30 00:04:57 2016
+// Library - muddlib11, Cell - nor2_1x, View - cmos_sch
+// LAST TIME SAVED: Feb 16 19:56:15 2012
+// NETLIST TIME: Mar 30 11:12:13 2016
 `timescale 1ns / 100ps 
 
-module inv_4x ( y, a );
+module nor2_1x ( y, a, b );
 output  y;
 
-input  a;
+input  a, b;
 
 
 
 specify 
     specparam CDS_LIBNAME  = "muddlib11";
-    specparam CDS_CELLNAME = "inv_4x";
+    specparam CDS_CELLNAME = "nor2_1x";
     specparam CDS_VIEWNAME = "cmos_sch";
 endspecify
 

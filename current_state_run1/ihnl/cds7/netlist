@@ -1,9 +1,9 @@
-// Library - muddlib11, Cell - nor2_1x, View - cmos_sch
+// Library - muddlib11, Cell - nand2_2x, View - cmos_sch
 // LAST TIME SAVED: Feb 16 19:56:15 2012
-// NETLIST TIME: Mar 30 00:04:57 2016
+// NETLIST TIME: Mar 30 11:12:13 2016
 `timescale 1ns / 100ps 
 
-module nor2_1x ( y, a, b );
+module nand2_2x ( y, a, b );
 output  y;
 
 input  a, b;
@@ -12,21 +12,21 @@ input  a, b;
 
 specify 
     specparam CDS_LIBNAME  = "muddlib11";
-    specparam CDS_CELLNAME = "nor2_1x";
+    specparam CDS_CELLNAME = "nand2_2x";
     specparam CDS_VIEWNAME = "cmos_sch";
 endspecify
 
 `switch default
-pmos #(0.1)   (* const real width = 4.800, length = 0.600; *) M2( y,
-     mid, b);
+pmos #(0.1)   (* const real width = 7.200, length = 0.600; *) M2( y,
+     cds_globals.vdd_, b);
 `switch default
-pmos #(0.1)   (* const real width = 4.800, length = 0.600; *) M3( mid,
+pmos #(0.1)   (* const real width = 7.200, length = 0.600; *) M3( y,
      cds_globals.vdd_, a);
 `switch default
-nmos #(0.1)   (* const real width = 2.400, length = 0.600; *) M0( y,
-     cds_globals.gnd_, b);
+nmos #(0.1)   (* const real width = 7.200, length = 0.600; *) M0( y,
+     mid, b);
 `switch default
-nmos #(0.1)   (* const real width = 2.400, length = 0.600; *) M1( y,
+nmos #(0.1)   (* const real width = 7.200, length = 0.600; *) M1( mid,
      cds_globals.gnd_, a);
 
 endmodule

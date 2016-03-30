@@ -8,23 +8,23 @@ ihnl/cds0/netlist
 // netlist file - muddlib11, inv_1x, cmos_sch.
 ihnl/cds1/netlist
 // netlist file - muddlib11, nor2_1x, cmos_sch.
-ihnl/cds7/netlist
-// netlist file - muddlib11, a2o1_1x, cmos_sch.
-ihnl/cds6/netlist
-// netlist file - muddlib11, nor2_2x, cmos_sch.
-ihnl/cds8/netlist
-// netlist file - muddlib11, inv_4x, cmos_sch.
 ihnl/cds2/netlist
-// netlist file - muddlib11, nand2_1x, cmos_sch.
-ihnl/cds5/netlist
-// netlist file - muddlib11, nand2_2x, cmos_sch.
+// netlist file - muddlib11, a2o1_1x, cmos_sch.
 ihnl/cds3/netlist
-// netlist file - muddlib11, and2_1x, cmos_sch.
+// netlist file - muddlib11, nor2_2x, cmos_sch.
 ihnl/cds4/netlist
+// netlist file - muddlib11, inv_4x, cmos_sch.
+ihnl/cds5/netlist
+// netlist file - muddlib11, nand2_1x, cmos_sch.
+ihnl/cds6/netlist
+// netlist file - muddlib11, nand2_2x, cmos_sch.
+ihnl/cds7/netlist
+// netlist file - muddlib11, and2_1x, cmos_sch.
+ihnl/cds8/netlist
 // netlist file - muddlib11, mux2_c_1x, cmos_sch.
-ihnl/cds10/netlist
+ihnl/cds9/netlist
 // netlist file - currentstate_synth, current_state, schematic.
-ihnl/cds11/netlist
+ihnl/cds10/netlist
 
 
 // End HDL models

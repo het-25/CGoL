@@ -406,7 +406,7 @@ simNCVerilogVCompScriptFile = "compare.rule"
 simNCVerilogVCompMaxCompareMismatches = 200
 
 ;Path to Database
-simNCVerilogVCompCompareResultsDirPath = "/hm/prabal/TEST/verilog/230530/myrun"
+simNCVerilogVCompCompareResultsDirPath = "/hdd/home/ekahn/IC_CAD/current_state_run1"
 
 ;Difference Database
 simNCVerilogVCompCompareResultsDirName = "diff.db.out"
