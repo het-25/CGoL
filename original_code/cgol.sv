@@ -1,6 +1,6 @@
 module cgol #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2, 
-                 input  logic               reset_lines[3:0],, 
+                 input  logic [3:0]         reset_lines,
                  output logic [WIDTH-1:0]   row, col);
 	//instantiate wires
 	logic [REGBITS-1:0] addr;
@@ -28,7 +28,7 @@ endmodule
 //
 //==========================================================================
 
-module all_synth (input logic ph1, input logic ph2, input logic reset_lines[3:0],
+module all_synth (input logic ph1, input logic ph2, input logic [3:0] reset_lines,
 				  input logic [7:0] rd1, rd2, rd3,
 				  output logic [7:0] row, col, wd,
 				  output logic RWSelect, output logic [2:0] addr);

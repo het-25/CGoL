@@ -16,6 +16,7 @@
 
 	// start with reset
 	initial begin
+		reset_lines <= 4'b1000; 
 		#10;
 		reset_lines <= 4'b0000;
 	end
