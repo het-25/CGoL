@@ -7,7 +7,8 @@
 
 module prev_state #(parameter WIDTH = 8, REGBITS = 3)
                 (input  logic               ph1, ph2,
-                 input  logic               regwrite, reset, 
+                 input  logic               regwrite,
+		 input  logic 		    reset,
                  input  logic [REGBITS-1:0] ra,
                  input  logic [WIDTH-1:0]   wd, 
                  output logic [WIDTH-1:0]   row_a, row, row_b);

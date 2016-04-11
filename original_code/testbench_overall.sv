@@ -1,20 +1,22 @@
     module testbench_overall();
     //initialize variables
-	logic ph1, ph2, reset;
+	logic ph1, ph2;
+	logic [3:0] reset_lines;
 	logic [7:0] row, col, row_exp, col_exp;
 	logic [31:0] vectornum, errors;
 	logic [15:0] testvectors[1000:0];
-	cgol dut(ph1, ph2, reset, row, col);
+	cgol dut(ph1, ph2, reset_lines, row, col);
 	
 	initial $readmemb("gen.tv", testvectors); //read in testvectors
 	initial vectornum = 0;
 	initial errors = 0;
+	assign reset = reset_lines[0]|reset_lines[1]|reset_lines[2]|reset_lines[3];
 
 	// start with reset
 	initial begin
-		reset <= 1; 
+		reset_lines[0] <= 1; 
 		#10;
-		reset <= 0;
+		reset_lines[0] <= 0;
 	end
 	
 	// initialize two phase clock
