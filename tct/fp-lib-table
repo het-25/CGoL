@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name dip-sip)(type KiCad)(uri "$(KIPRJMOD)/dip-sip.pretty")(options "")(descr ""))
+  (lib (name LED_MATRIX_RG_8x8)(type Legacy)(uri "$(KIPRJMOD)/LED_MATRIX_RG_8x8.mod")(options "")(descr ""))
+  (lib (name seagull)(type KiCad)(uri "$(KIPRJMOD)/seagull.pretty")(options "")(descr ""))
+)
